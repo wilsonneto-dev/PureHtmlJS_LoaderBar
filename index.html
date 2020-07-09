@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+      }
+      .bar {
+        opacity: 1;
+        width: 0%;
+        background-color: red;
+        height: 5px;
+      }
+
+      .bar-initial {
+        width: 0;
+      }
+
+      .bar-final {
+        width: 100% !important;
+      }
+
+      /*
+      .progress {
+        width: 80%;
+      } */
+
+      .progress {
+        animation-name: progress;
+        animation-duration: 6s;
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: forwards;
+      }
+
+      @keyframes progress {
+        0% {
+          width: 0%;
+        }
+
+        100% {
+          width: 99.9%;
+          opacity: 0;
+        }
+
+        10% {
+          width: 40%;
+        }
+
+        33% {
+          width: 80%;
+        }
+        90% {
+          opacity: 1;
+        }
+        99% {
+          width: 99%;
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bar"></div>
+
+    <button>steps</button>
+    <script>
+      const uiBtn = document.querySelector('button');
+      const uiBar = document.querySelector('div.bar');
+      let state = 0;
+
+      const onClick = () => {
+        if (state > 1) {
+          state = 0;
+          uiBar.classList.remove('progress');
+          uiBar.classList.remove('bar-final');
+          return;
+        }
+
+        if (state === 0) {
+          uiBar.classList.add('progress');
+        }
+
+        if (state === 1) {
+          uiBar.classList.add('bar-final');
+        }
+        state++;
+      };
+
+      uiBtn.addEventListener('click', onClick);
+    </script>
+  </body>
+</html>
